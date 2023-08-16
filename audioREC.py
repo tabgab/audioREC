@@ -1,36 +1,13 @@
 import streamlit as st
-import sounddevice as sd
-import numpy as np
+from audiorecorder import audiorecorder
 
-# Define recording as a global variable
-recording = False
+st.title("Audio Recorder")
+audio = audiorecorder("Click to record", "Recording...")
 
-def main():
-    global recording  # Declare that you're using the global variable within the function
+if len(audio) > 0:
+    # To play audio in frontend:
+    st.audio(audio.tobytes())
     
-    st.title("Audio Recorder")
-
-    chunk_duration = 0.1  # Duration of each audio chunk in seconds
-    audio_chunks = []  # To store recorded audio chunks
-
-    if st.button("Record"):
-        recording = True
-
-    if recording:
-        with st.spinner("Recording..."):
-            audio_chunk = sd.rec(int(chunk_duration * 44100), samplerate=44100, channels=1)
-            audio_chunks.append(audio_chunk)
-    else:
-        if audio_chunks:
-            sd.stop()
-
-    if st.button("Stop"):
-        recording = False
-
-    if audio_chunks:
-        st.write("Recorded Audio Chunks:")
-        for idx, chunk in enumerate(audio_chunks):
-            st.audio(chunk, format="wav", caption=f"Chunk {idx + 1}")
-
-if __name__ == "__main__":
-    main()
+    # To save audio to a file:
+    wav_file = open("audio.mp3", "wb")
+    wav_file.write(audio.tobytes())
