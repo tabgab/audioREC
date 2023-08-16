@@ -2,16 +2,18 @@ import streamlit as st
 import sounddevice as sd
 import numpy as np
 
+# Define recording as a global variable
+recording = False
+
 def main():
+    global recording  # Declare that you're using the global variable within the function
+    
     st.title("Audio Recorder")
 
     chunk_duration = 0.1  # Duration of each audio chunk in seconds
     audio_chunks = []  # To store recorded audio chunks
 
-    recording = False
-
     if st.button("Record"):
-        global recording
         recording = True
 
     if recording:
@@ -23,7 +25,6 @@ def main():
             sd.stop()
 
     if st.button("Stop"):
-        global recording
         recording = False
 
     if audio_chunks:
