@@ -10,6 +10,10 @@ import numpy as np
 from io import BytesIO
 from time import sleep
 
+#API KEYS 
+OPENAI_API_KEY = st.secrets.OPENAI_API_KEY
+AssembyAI_API_KEY = st.secrets.AssembyAI_API_KEY
+
 def record_audio(file_path):
 
     st.title("Audio Recorder")
@@ -26,7 +30,7 @@ def record_audio(file_path):
 #Transcribe audio to text.
 
 audioheaders = {
-    'authorization': assembly_auth_key, 
+    'authorization': AssembyAI_API_KEY, 
     'content-type': 'application/json',
 }
 
