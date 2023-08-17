@@ -1,7 +1,4 @@
 numpy
 streamlit-audiorecorder
 openai==0.27.8
-streamlit
 requests
-io
-time
