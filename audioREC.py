@@ -16,20 +16,8 @@ file_path = "audio.wav"
 OPENAI_API_KEY = st.secrets.OPENAI_API_KEY
 AssembyAI_API_KEY = st.secrets.AssembyAI_API_KEY
 
-def record_audio(file_path):
-    logging("Starting recorder, waiting for button press.")
-    if st.button("Recorder"):
-        logging("Button pressed, displaying recorder interface")
-        st.text("Audio Recorder")
-        audio = audiorecorder("Click to record", "Recording...")
 
-        if len(audio) > 0:
-            # To play audio in frontend:
-            st.audio(audio.tobytes())
-            
-            # To save audio to a file:
-            wav_file = open(file_path, "wb")
-            wav_file.write(audio.tobytes())
+    
 
 
 #Transcribe audio to text.
@@ -95,7 +83,21 @@ def main():
     st.title("Talking to GPT-3")
     file_path = "audio.wav"
 
-    record_audio(file_path)
+    logging("Starting recorder, waiting for button press.")
+    if st.button("Recorder"):
+        logging("Button pressed, displaying recorder interface")
+        st.text("Audio Recorder")
+        audio = audiorecorder("Click to record", "Recording...")
+
+        if len(audio) > 0:
+            # To play audio in frontend:
+            st.audio(audio.tobytes())
+            
+            # To save audio to a file:
+            wav_file = open(file_path, "wb")
+            wav_file.write(audio.tobytes())
+
+    #record_audio(file_path)
 
     upload_url = upload_to_assemblyai(file_path)
     st.write('Prompt uploaded to AssemblyAI')
