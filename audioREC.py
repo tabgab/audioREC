@@ -82,10 +82,6 @@ def main():
 
     st.title("Talking to GPT-3")
     file_path = "audio.wav"
-    st.write(len(audio))
-
-
-    
         
     st.text("Audio Recorder")
     audio = audiorecorder("Click to record", "Recording...")
