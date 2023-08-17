@@ -64,7 +64,7 @@ def get_transcription_result(transcription_id):
 
     while current_status not in ("completed", "error"):
         
-        response = requests.get(endpoint, headers=headers)
+        response = requests.get(endpoint, headers=audioheaders)
         current_status = response.json()['status']
         
         if current_status in ("completed", "error"):
