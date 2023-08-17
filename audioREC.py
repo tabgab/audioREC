@@ -83,34 +83,4 @@ def main():
     st.title("Talking to GPT-3")
     file_path = "audio.wav"
 
-    logging("Starting recorder, waiting for button press.")
-    if st.button("Recorder"):
-        logging("Button pressed, displaying recorder interface")
-        st.text("Audio Recorder")
-        audio = audiorecorder("Click to record", "Recording...")
-
-        if len(audio) > 0:
-            # To play audio in frontend:
-            st.audio(audio.tobytes())
-            
-            # To save audio to a file:
-            wav_file = open(file_path, "wb")
-            wav_file.write(audio.tobytes())
-
-    #record_audio(file_path)
-
-    upload_url = upload_to_assemblyai(file_path)
-    st.write('Prompt uploaded to AssemblyAI')
-
-    transcription_id = transcribe(upload_url)
-    st.write('Prompt Sent for Transciption to AssemblyAI')
-
-    prompt = get_transcription_result(transcription_id)
-
-    st.write('Prompt Transcribed...Sending to GPT-3')
-    st.info(prompt)
-
-    gpt_output = call_gpt3(prompt)
-
-    st.write('Response Received from GPT-3')
-    st.success(gpt_output)
+    
