@@ -88,6 +88,7 @@ def main():
         
         st.text("Audio Recorder")
         audio = audiorecorder("Click to record", "Recording...")
+        st.write(len(audio))
 
         if len(audio) > 0:
             # To play audio in frontend:
