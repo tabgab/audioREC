@@ -6,7 +6,7 @@ import json
 import streamlit.components.v1 as components
 import requests
 import numpy as np 
-import logging
+
 
 from io import BytesIO
 from time import sleep
@@ -83,9 +83,9 @@ def main():
     st.title("Talking to GPT-3")
     file_path = "audio.wav"
 
-    logging("Starting recorder, waiting for button press.")
+
     if st.button("Recorder"):
-        logging("Button pressed, displaying recorder interface")
+        
         st.text("Audio Recorder")
         audio = audiorecorder("Click to record", "Recording...")
 
